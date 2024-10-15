@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curvelabs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-1: oklch(60% 0.2 315);
+            --color-2: oklch(70% 0.15 255);
+            --color-3: oklch(75% 0.125 180);
+            --color-4: oklch(70% 0.15 30);
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Libre Franklin", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            overflow: hidden;
+            background: linear-gradient(#111, #000);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60vmin;
+            height: 60vmin;
+            aspect-ratio: 1 / 1;
+        }
+
+        #animation {
+            width: 100%;
+            height: auto;
+            animation: rotate 20s infinite linear alternate;
+            transform-style: preserve-3d;
+        }
+
+        .ring {
+            fill: none;
+            stroke-width: 0.5;
+            animation: pulse 4s linear infinite alternate-reverse;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: perspective(1000px) rotateX(30deg) rotateY(0deg);
+            }
+
+            50% {
+                transform: perspective(1000px) rotateX(30deg) rotateY(90deg);
+            }
+
+            55% {
+                transform: perspective(1000px) rotateX(30deg) rotateY(105deg);
+            }
+
+            100% {
+                transform: perspective(1000px) rotateX(30deg) rotateY(180deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                stroke-width: 0.5;
+                transform: scale(.7);
+            }
+
+            100% {
+                stroke-width: 2;
+                transform: scale(1);
+            }
+        }
+
+        .ring:nth-child(1) {
+            stroke: var(--color-1);
+            animation-delay: 5s;
+        }
+
+        .ring:nth-child(2) {
+            stroke: var(--color-2);
+            animation-delay: -5.5s;
+        }
+
+        .ring:nth-child(3) {
+            stroke: var(--color-3);
+            animation-delay: -6s;
+        }
+
+        .ring:nth-child(4) {
+            stroke: var(--color-4);
+            animation-delay: -7.5s;
+        }
+
+        .ring:nth-child(5) {
+            stroke: var(--color-1);
+            animation-delay: -8s;
+        }
+
+        .ring:nth-child(6) {
+            stroke: var(--color-2);
+            animation-delay: -8.5s;
+        }
+
+        #siteName {
+            font-size: 4vw;
+            /* color: var(--color-1); */
+            color: #f8b63ce1;
+            text-shadow: 0 0 10px var(--color-1);
+            opacity: 0;
+            animation: fadeIn 3s ease-in 2s forwards;
+            margin-top: 1vh;
+        }
+        .tld {
+            opacity: 0;
+            color: #f83c3ce1;
+            animation: fadeIn 1.5s ease-in 5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <svg id="animation" viewBox="-200 -200 400 400">
+            <defs>
+                <path id="circle" d="M0,150 A150,150 0 0,1 0,-150 A150,150 0 0,1 0,150" />
+            </defs>
+            <g>
+                <use href="#circle" class="ring" />
+                <use href="#circle" class="ring" />
+                <use href="#circle" class="ring" />
+                <use href="#circle" class="ring" />
+                <use href="#circle" class="ring" />
+                <use href="#circle" class="ring" />
+            </g>
+        </svg>
+        <div id="siteName">curveLabs<span class="tld">.net</span></div>
+    </div>
+</body>
+
+</html>
